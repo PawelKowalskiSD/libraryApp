@@ -1,9 +1,6 @@
 package com.crud.library.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +15,20 @@ import java.util.List;
 public class Title {
     @Id
     @GeneratedValue
+    @Column(name = "TITLE_ID")
     private Long id;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "AUTHOR")
     private String author;
-    private String yearOfPublication;
-    @OneToMany
+
+    @Column(name = "YEAR_OF_PUBLICATION")
+    private int yearOfPublication;
+    @OneToMany(
+            targetEntity = BookCopies.class,
+            mappedBy = "title",
+            fetch = FetchType.LAZY)
     private List<BookCopies> bookCopiesList = new ArrayList<>();
 }
