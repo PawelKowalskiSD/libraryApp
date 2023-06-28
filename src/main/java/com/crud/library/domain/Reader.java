@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,6 +27,16 @@ public class Reader {
     private String lastname;
 
     @Column(name = "ACCOUNT_CREATION_DATE")
-    private Date accountCreationDate;
+    private LocalDate accountCreationDate;
 
+    public Reader(String firstname, String lastname, LocalDate accountCreationDate) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.accountCreationDate = accountCreationDate;
+    }
+
+    public Reader(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +14,10 @@ public class ReaderDto {
     private Long id;
     private String firstname;
     private String lastname;
-    private Date accountCreationDate;
+    private LocalDate accountCreationDate;
+
+    public ReaderDto(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }

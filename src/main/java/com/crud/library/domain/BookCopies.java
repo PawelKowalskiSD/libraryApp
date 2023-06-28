@@ -1,7 +1,9 @@
 package com.crud.library.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +21,17 @@ public class BookCopies {
     @ManyToOne
     @JoinColumn(name = "TITLE_ID")
     private Title title;
+
+    public BookCopies(String status) {
+        this.status = status;
+    }
+
+    public BookCopies(String status, Title title) {
+        this.status = status;
+        this.title = title;
+    }
+
+    public BookCopies(Title title) {
+        this.title = title;
+    }
 }

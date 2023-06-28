@@ -13,4 +13,10 @@ public class TitleDto {
     private String title;
     private String author;
     private int yearOfPublication;
+
+    public TitleDto(String title, String author, int yearOfPublication) {
+        this.title = title;
+        this.author = author;
+        this.yearOfPublication = yearOfPublication;
+    }
 }
