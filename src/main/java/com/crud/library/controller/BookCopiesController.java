@@ -20,21 +20,17 @@ public class BookCopiesController {
 
     private final BookCopiesMapper bookCopiesMapper;
     private final BookCopiesService bookCopiesService;
-    private final TitleService titleService;
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Set<BookCopiesDto>> getAvailableCopies(@PathVariable Long id) {
+    @GetMapping
+    public ResponseEntity<Set<BookCopiesDto>> getAvailableCopies() {
         Set<BookCopies> bookCopies = bookCopiesService.getAvailable();
-        return ResponseEntity.ok(bookCopiesMapper.mapToBookCopiesDtoSet(bookCopies, id));
+        return ResponseEntity.ok(bookCopiesMapper.mapToBookCopiesDtoSet(bookCopies));
 
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createBookCopies(@RequestBody BookCopiesDto bookCopiesDto, @PathVariable Long id) throws Exception {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> createBookCopies(@RequestBody BookCopiesDto bookCopiesDto) throws Exception {
         BookCopies bookCopies = bookCopiesMapper.mapToBookCopies(bookCopiesDto);
-
-        Title title = titleService.findTitleById(id);
-        bookCopies.setTitle(title);
         bookCopiesService.saveBookCopies(bookCopies);
         return ResponseEntity.ok().build();
     }

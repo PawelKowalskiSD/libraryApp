@@ -5,6 +5,7 @@ import com.crud.library.domain.Reader;
 import com.crud.library.domain.Title;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -12,25 +13,18 @@ import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class BorrowedDto {
 
     private Long id;
-    private LocalDate dateOfBorrowing;
-    private LocalDate dateOfReturn;
-    private BookCopies bookCopies;
-    private Reader reader;
+    private LocalDate dateOfBorrowing = LocalDate.now();
+    private LocalDate dateOfReturn = LocalDate.now();
+    private Long bookCopiesId;
+    private Long readerId;
 
-    public BorrowedDto(LocalDate dateOfBorrowing, LocalDate dateOfReturn, BookCopies bookCopies, Reader reader) {
+    public BorrowedDto(LocalDate dateOfBorrowing, Long bookCopies, Long reader) {
         this.dateOfBorrowing = dateOfBorrowing;
-        this.dateOfReturn = dateOfReturn;
-        this.bookCopies = bookCopies;
-        this.reader = reader;
-    }
-
-    public BorrowedDto(LocalDate dateOfBorrowing, BookCopies bookCopies, Reader reader) {
-        this.dateOfBorrowing = dateOfBorrowing;
-        this.bookCopies = bookCopies;
-        this.reader = reader;
+        this.bookCopiesId = bookCopies;
+        this.readerId = reader;
     }
 }

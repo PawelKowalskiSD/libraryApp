@@ -5,7 +5,9 @@ import com.crud.library.repository.BookCopiesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +20,9 @@ public class BookCopiesService {
     }
 
     public Set<BookCopies> getAvailable() {
-        return bookCopiesRepository.findAll();
+        return bookCopiesRepository.findAll().stream()
+                .filter(book -> book.getStatus().equals("available"))
+                .collect(Collectors.toSet());
     }
 
     public void deleteBookCopiesById(Long id) {

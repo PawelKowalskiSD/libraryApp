@@ -12,5 +12,5 @@ public class BookCopiesDto {
 
     private Long id;
     private String status;
-    private Title title;
+    private Long titleId;
 }

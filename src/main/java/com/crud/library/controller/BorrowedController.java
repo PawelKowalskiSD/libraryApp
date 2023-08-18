@@ -31,8 +31,8 @@ public class BorrowedController {
 
     @PostMapping(value = "/begin", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> beginBorrow(@RequestBody BorrowedDto borrowedDto) throws Exception {
-        BookCopies bookCopies = bookCopiesService.findById(borrowedDto.getBookCopies().getId());
-        Reader reader = readerService.findReaderById(borrowedDto.getReader().getId());
+        BookCopies bookCopies = bookCopiesService.findById(borrowedDto.getBookCopiesId());
+        Reader reader = readerService.findReaderById(borrowedDto.getReaderId());
         Borrowed borrowed = borrowedMapper.mapToBorrowed(borrowedDto);
         borrowed.setBookCopies(bookCopies);
         borrowed.setReader(reader);
