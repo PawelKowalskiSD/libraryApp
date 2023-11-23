@@ -14,6 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 public class Title {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,34 +28,20 @@ public class Title {
     @NotNull
     @Column(name = "AUTHOR")
     private String author;
+
     @NotNull
     @Column(name = "YEAR_OF_PUBLICATION")
     private int yearOfPublication;
+
     @OneToMany(
             targetEntity = BookCopies.class,
             mappedBy = "title",
             fetch = FetchType.LAZY)
     private Set<BookCopies> bookCopiesList = new HashSet<>();
 
-    public Title(Long id, String title, String author, int yearOfPublication) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.yearOfPublication = yearOfPublication;
-    }
-
     public Title(String title, String author, int yearOfPublication) {
         this.title = title;
         this.author = author;
         this.yearOfPublication = yearOfPublication;
     }
-
-    public Title(String title, String author, int yearOfPublication, Set<BookCopies> bookCopiesList) {
-        this.title = title;
-        this.author = author;
-        this.yearOfPublication = yearOfPublication;
-        this.bookCopiesList = bookCopiesList;
-    }
-
-
 }

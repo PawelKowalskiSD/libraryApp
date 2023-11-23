@@ -12,9 +12,6 @@ import java.util.Optional;
 public interface ReaderRepository extends CrudRepository <Reader, Long> {
 
     @Override
-    Reader save(final Reader reader);
-
-    @Override
     void deleteById(Long id);
 
     @Override

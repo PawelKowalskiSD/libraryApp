@@ -10,8 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 public interface BorrowedRepository extends CrudRepository<Borrowed, Long> {
 
     @Override
-    Borrowed save(Borrowed borrowed);
-
-    @Override
     void deleteById(Long id);
 }

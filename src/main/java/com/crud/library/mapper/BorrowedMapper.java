@@ -28,7 +28,9 @@ public class BorrowedMapper {
 
     public BorrowedDto mapToBorrowedDto(final Borrowed borrowed) {
         return new BorrowedDto(
+                borrowed.getId(),
                 borrowed.getDateOfBorrowing(),
+                borrowed.getDateOfReturn(),
                 borrowed.getBookCopies().getId(),
                 borrowed.getReader().getId());
     }

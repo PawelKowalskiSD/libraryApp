@@ -18,8 +18,5 @@ public interface BookCopiesRepository extends CrudRepository<BookCopies, Long> {
     Optional<BookCopies> findById(Long id);
 
     @Override
-    BookCopies save(BookCopies bookCopies);
-
-    @Override
     void deleteById(Long id);
 }

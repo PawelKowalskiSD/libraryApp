@@ -1,6 +1,5 @@
 package com.crud.library.dto;
 
-import com.crud.library.domain.Title;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BookCopiesDto {
-
     private Long id;
-    private String status;
+    private boolean isOnLoan;
     private Long titleId;
 }

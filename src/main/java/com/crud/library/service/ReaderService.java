@@ -11,15 +11,11 @@ public class ReaderService {
 
     private final ReaderRepository readerRepository;
 
-    public Reader saveReader(final Reader reader) {
-        return readerRepository.save(reader);
-    }
-
     public Reader findReaderById(final Long id) throws Exception {
         return readerRepository.findById(id).orElseThrow(Exception::new);
     }
 
-    public void deleteReaderById(Long id) {
-        readerRepository.deleteById(id);
+    public Reader createReaders(Reader reader) {
+        return reader;
     }
 }

@@ -19,13 +19,13 @@ public class BookCopiesMapper {
     public BookCopies mapToBookCopies(final BookCopiesDto bookCopiesDto) throws Exception {
         Title title = titleService.findTitleById(bookCopiesDto.getTitleId());
         return new BookCopies(bookCopiesDto.getId(),
-                bookCopiesDto.getStatus(),
+                bookCopiesDto.isOnLoan(),
                 title);
     }
 
     public BookCopiesDto mapToBookCopiesDto(final BookCopies bookCopies) {
         return new BookCopiesDto(bookCopies.getId(),
-                bookCopies.getStatus(),
+                bookCopies.isOnLoan(),
                 bookCopies.getTitle().getId());
     }
 

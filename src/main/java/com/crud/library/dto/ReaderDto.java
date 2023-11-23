@@ -10,14 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class ReaderDto {
-
     private Long id;
     private String firstname;
     private String lastname;
     private LocalDate accountCreationDate;
-
-    public ReaderDto(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
 }

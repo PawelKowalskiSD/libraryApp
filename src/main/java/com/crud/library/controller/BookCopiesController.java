@@ -1,11 +1,8 @@
 package com.crud.library.controller;
 
-import com.crud.library.domain.BookCopies;
-import com.crud.library.domain.Title;
 import com.crud.library.dto.BookCopiesDto;
 import com.crud.library.mapper.BookCopiesMapper;
 import com.crud.library.service.BookCopiesService;
-import com.crud.library.service.TitleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,25 +18,18 @@ public class BookCopiesController {
     private final BookCopiesMapper bookCopiesMapper;
     private final BookCopiesService bookCopiesService;
 
-    @GetMapping
-    public ResponseEntity<Set<BookCopiesDto>> getAvailableCopies() {
-        Set<BookCopies> bookCopies = bookCopiesService.getAvailable();
-        return ResponseEntity.ok(bookCopiesMapper.mapToBookCopiesDtoSet(bookCopies));
-
+    @GetMapping(value = "/{title}")
+    public ResponseEntity<Set<BookCopiesDto>> getAvailableCopies(@PathVariable String title) {
+        return ResponseEntity.ok(bookCopiesMapper.mapToBookCopiesDtoSet(bookCopiesService.getAvailable(title)));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createBookCopies(@RequestBody BookCopiesDto bookCopiesDto) throws Exception {
-        BookCopies bookCopies = bookCopiesMapper.mapToBookCopies(bookCopiesDto);
-        bookCopiesService.saveBookCopies(bookCopies);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<BookCopiesDto> createBookCopies(@RequestBody BookCopiesDto bookCopiesDto) throws Exception {
+        return ResponseEntity.ok().body(bookCopiesMapper.mapToBookCopiesDto(bookCopiesService.createCopies(bookCopiesMapper.mapToBookCopies(bookCopiesDto))));
     }
 
     @PatchMapping
     public ResponseEntity<BookCopiesDto> changeOfStatus(@RequestBody BookCopiesDto bookCopiesDto) throws Exception {
-        BookCopies bookCopies = bookCopiesService.findById(bookCopiesDto.getId());
-        bookCopies.setStatus(bookCopiesDto.getStatus());
-        bookCopiesService.saveBookCopies(bookCopies);
-        return ResponseEntity.ok(bookCopiesMapper.mapToBookCopiesDto(bookCopies));
+        return ResponseEntity.ok().body(bookCopiesMapper.mapToBookCopiesDto(bookCopiesService.changeBookStatus(bookCopiesMapper.mapToBookCopies(bookCopiesDto))));
     }
 }

@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class Reader {
+
     @Id
     @GeneratedValue
     @Column(name = "READER_ID")
@@ -28,12 +29,6 @@ public class Reader {
 
     @Column(name = "ACCOUNT_CREATION_DATE")
     private LocalDate accountCreationDate;
-
-    public Reader(String firstname, String lastname, LocalDate accountCreationDate) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.accountCreationDate = accountCreationDate;
-    }
 
     public Reader(String firstname, String lastname) {
         this.firstname = firstname;

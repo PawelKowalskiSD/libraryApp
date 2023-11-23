@@ -8,15 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class TitleDto {
-
     private Long id;
     private String title;
     private String author;
     private int yearOfPublication;
-
-    public TitleDto(String title, String author, int yearOfPublication) {
-        this.title = title;
-        this.author = author;
-        this.yearOfPublication = yearOfPublication;
-    }
 }
