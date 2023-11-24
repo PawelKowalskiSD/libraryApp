@@ -1,5 +1,6 @@
 package com.crud.library.controller;
 
+import com.crud.library.dto.AddTitleToLibraryDto;
 import com.crud.library.dto.TitleDto;
 import com.crud.library.mapper.TitleMapper;
 import com.crud.library.service.TitleService;
@@ -20,7 +21,7 @@ public class TitleController {
     private final TitleMapper titleMapper;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TitleDto> createTitle(@RequestBody TitleDto titleDto) {
-        return ResponseEntity.ok().body(titleMapper.mapToTitleDto(titleService.create(titleMapper.mapToTitle(titleDto))));
+    public ResponseEntity<TitleDto> createTitle(@RequestBody AddTitleToLibraryDto addTitleToLibraryDto) {
+        return ResponseEntity.ok().body(titleMapper.mapToTitleDto(titleService.create(titleMapper.mapToTitle(addTitleToLibraryDto))));
     }
 }

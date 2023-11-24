@@ -1,6 +1,7 @@
 package com.crud.library.service;
 
 import com.crud.library.domain.BookCopies;
+import com.crud.library.domain.Title;
 import com.crud.library.exception.BookCopiesNotFoundException;
 import com.crud.library.repository.BookCopiesRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 public class BookCopiesService {
 
     private final BookCopiesRepository bookCopiesRepository;
+    private final TitleService titleService;
 
     public Set<BookCopies> getAvailable(String title) {
         return bookCopiesRepository.findAll().stream().filter(a -> !a.isOnLoan() && a.getTitle().getTitle().equals(title)).collect(Collectors.toSet());
@@ -23,7 +25,11 @@ public class BookCopiesService {
         return bookCopiesRepository.findById(id).orElseThrow(BookCopiesNotFoundException::new);
     }
 
-    public BookCopies createCopies(BookCopies bookCopies) {
+    public BookCopies createCopies(BookCopies bookCopies) throws Exception {
+        Title title = titleService.findTitleById(bookCopies.getTitle().getId());
+        bookCopies.setTitle(title);
+        bookCopies.setOnLoan(false);
+        bookCopiesRepository.save(bookCopies);
         return bookCopies;
     }
 

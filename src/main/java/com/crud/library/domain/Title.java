@@ -1,7 +1,6 @@
 package com.crud.library.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,20 +15,16 @@ import java.util.Set;
 public class Title {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "TITLE_ID", unique = true)
+    @Column(name = "TITLE_ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "TITLE", unique = true)
+    @Column(name = "TITLE")
     private String title;
 
-    @NotNull
     @Column(name = "AUTHOR")
     private String author;
 
-    @NotNull
     @Column(name = "YEAR_OF_PUBLICATION")
     private int yearOfPublication;
 
