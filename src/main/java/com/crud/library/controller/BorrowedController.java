@@ -1,6 +1,7 @@
 package com.crud.library.controller;
 
-import com.crud.library.dto.BorrowedDto;
+import com.crud.library.dto.BorrowDto;
+import com.crud.library.dto.ReadBorrowedDto;
 import com.crud.library.mapper.BorrowedMapper;
 import com.crud.library.service.BorrowedService;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,12 @@ public class BorrowedController {
     private final BorrowedService borrowedService;
 
     @PostMapping(value = "/begin", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BorrowedDto> beginBorrow(@RequestBody BorrowedDto borrowedDto) throws Exception {
-        return ResponseEntity.ok().body(borrowedMapper.mapToBorrowedDto(borrowedService.startBorrowBook(borrowedMapper.mapToBorrowed(borrowedDto))));
+    public ResponseEntity<ReadBorrowedDto> beginBorrow(@RequestBody BorrowDto borrowDto) throws Exception {
+        return ResponseEntity.ok().body(borrowedMapper.mapToBorrowedDto(borrowedService.startBorrowBook(borrowedMapper.mapToBorrowed(borrowDto))));
     }
 
     @PostMapping(value = "/end")
-    public ResponseEntity<BorrowedDto> endBorrow(@RequestBody BorrowedDto borrowedDto) throws Exception {
-        return ResponseEntity.ok().body(borrowedMapper.mapToBorrowedDto(borrowedService.returnBook(borrowedMapper.mapToBorrowed(borrowedDto))));
+    public ResponseEntity<ReadBorrowedDto> endBorrow(@RequestBody BorrowDto borrowDto) throws Exception {
+        return ResponseEntity.ok().body(borrowedMapper.mapToBorrowedDto(borrowedService.returnBook(borrowedMapper.mapToBorrowed(borrowDto))));
     }
 }

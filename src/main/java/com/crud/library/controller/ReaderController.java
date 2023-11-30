@@ -1,5 +1,6 @@
 package com.crud.library.controller;
 
+import com.crud.library.dto.CreateReaderDto;
 import com.crud.library.dto.ReaderDto;
 import com.crud.library.mapper.ReaderMapper;
 import com.crud.library.service.ReaderService;
@@ -20,7 +21,7 @@ public class ReaderController {
 
 
     @PostMapping
-    public ResponseEntity<ReaderDto> createReader(@RequestBody ReaderDto readerDto) {
-        return ResponseEntity.ok().body(readerMapper.mapToReaderDto(readerService.createReaders(readerMapper.mapToReader(readerDto))));
+    public ResponseEntity<ReaderDto> createReader(@RequestBody CreateReaderDto createReaderDto) {
+        return ResponseEntity.ok().body(readerMapper.mapToReaderDto(readerService.createReaders(readerMapper.mapToReader(createReaderDto))));
     }
 }

@@ -5,6 +5,8 @@ import com.crud.library.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class ReaderService {
@@ -16,6 +18,10 @@ public class ReaderService {
     }
 
     public Reader createReaders(Reader reader) {
+        reader.setFirstname(reader.getFirstname());
+        reader.setLastname(reader.getLastname());
+        reader.setAccountCreationDate(LocalDate.now());
+        readerRepository.save(reader);
         return reader;
     }
 }

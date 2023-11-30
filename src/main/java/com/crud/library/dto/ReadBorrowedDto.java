@@ -9,10 +9,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class BorrowedDto {
+public class ReadBorrowedDto {
     private Long id;
-    private LocalDate dateOfBorrowing = LocalDate.now();
-    private LocalDate dateOfReturn = LocalDate.now();
+    private LocalDate dateOfBorrowing;
+    private LocalDate dateOfReturn;
     private Long bookCopiesId;
     private Long readerId;
 }

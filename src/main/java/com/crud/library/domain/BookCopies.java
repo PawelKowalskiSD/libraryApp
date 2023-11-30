@@ -23,8 +23,7 @@ public class BookCopies {
     @JoinColumn(name = "TITLE_ID")
     private Title title;
 
-    public BookCopies(boolean isOnLoan, Title title) {
-        this.isOnLoan = isOnLoan;
+    public BookCopies(Title title) {
         this.title = title;
     }
 }

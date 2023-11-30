@@ -1,6 +1,7 @@
 package com.crud.library.controller;
 
 import com.crud.library.dto.BookCopiesDto;
+import com.crud.library.dto.CreateBookCopiesDto;
 import com.crud.library.mapper.BookCopiesMapper;
 import com.crud.library.service.BookCopiesService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class BookCopiesController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<BookCopiesDto> createBookCopies(@RequestBody BookCopiesDto bookCopiesDto) throws Exception {
-        return ResponseEntity.ok().body(bookCopiesMapper.mapToBookCopiesDto(bookCopiesService.createCopies(bookCopiesMapper.mapToBookCopies(bookCopiesDto))));
+    public ResponseEntity<BookCopiesDto> createBookCopies(@RequestBody CreateBookCopiesDto createBookCopiesDto) throws Exception {
+        return ResponseEntity.ok().body(bookCopiesMapper.mapToBookCopiesDto(bookCopiesService.createCopies(bookCopiesMapper.mapToBookCopies(createBookCopiesDto))));
     }
 
     @PatchMapping

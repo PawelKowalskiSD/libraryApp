@@ -32,8 +32,7 @@ public class Borrowed {
     @JoinColumn(name = "READER_ID")
     private Reader reader;
 
-    public Borrowed(LocalDate dateOfBorrowing, BookCopies bookCopies, Reader reader) {
-        this.dateOfBorrowing = dateOfBorrowing;
+    public Borrowed(BookCopies bookCopies, Reader reader) {
         this.bookCopies = bookCopies;
         this.reader = reader;
     }

@@ -24,6 +24,7 @@ public class BorrowedService {
     public Borrowed startBorrowBook(Borrowed borrowed) throws Exception {
         BookCopies bookCopies = bookCopiesService.findById(borrowed.getBookCopies().getId());
         Reader reader = readerService.findReaderById(borrowed.getReader().getId());
+        bookCopies.setOnLoan(true);
         borrowed.setBookCopies(bookCopies);
         borrowed.setReader(reader);
         borrowed.setDateOfBorrowing(LocalDate.now());
