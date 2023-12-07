@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class BorrowDto {
-    private Long bookCopiesId;
-    private Long readerId;
+public class EndBorrowedDto {
+    private long borrowedId;
+
 }

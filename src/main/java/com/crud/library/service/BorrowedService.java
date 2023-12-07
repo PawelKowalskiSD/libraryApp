@@ -17,8 +17,12 @@ public class BorrowedService {
     private final BookCopiesService bookCopiesService;
     private final ReaderService readerService;
 
-    public Borrowed returnBook(Borrowed borrowed) {
-        return borrowed;
+    public Borrowed returnBook(Borrowed borrowed) throws Exception {
+        Borrowed returnBook = borrowedRepository.findById(borrowed.getId()).orElseThrow(Exception::new);
+        returnBook.getBookCopies().setOnLoan(false);
+        returnBook.setDateOfReturn(LocalDate.now());
+        borrowedRepository.save(returnBook);
+        return returnBook;
     }
 
     public Borrowed startBorrowBook(Borrowed borrowed) throws Exception {

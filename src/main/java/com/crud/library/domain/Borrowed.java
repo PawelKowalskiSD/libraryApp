@@ -36,4 +36,8 @@ public class Borrowed {
         this.bookCopies = bookCopies;
         this.reader = reader;
     }
+
+    public Borrowed(Long id) {
+        this.id = id;
+    }
 }

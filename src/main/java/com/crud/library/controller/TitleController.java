@@ -20,8 +20,8 @@ public class TitleController {
     private final TitleService titleService;
     private final TitleMapper titleMapper;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TitleDto> createTitle(@RequestBody AddTitleToLibraryDto addTitleToLibraryDto) {
-        return ResponseEntity.ok().body(titleMapper.mapToTitleDto(titleService.create(titleMapper.mapToTitle(addTitleToLibraryDto))));
+    @PostMapping(value = "/adds", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TitleDto> addTitle(@RequestBody AddTitleToLibraryDto addTitleToLibraryDto) {
+        return ResponseEntity.ok().body(titleMapper.mapToTitleDto(titleService.addTitleToDatabase(titleMapper.mapToTitle(addTitleToLibraryDto))));
     }
 }

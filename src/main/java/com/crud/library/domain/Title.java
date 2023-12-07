@@ -39,4 +39,11 @@ public class Title {
         this.author = author;
         this.yearOfPublication = yearOfPublication;
     }
+
+    public Title(Long id, String title, String author, int yearOfPublication) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.yearOfPublication = yearOfPublication;
+    }
 }
